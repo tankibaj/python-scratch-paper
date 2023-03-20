@@ -10,7 +10,7 @@ This is a Python script that automates the process of creating a new private rep
 - Clone the repository or download the script.
 - Install the Requests library by running the following command:
   ```
-  pip3 install requests
+  pip3 install -r requirements.txt
   ```
 - Set the following environment variables with your Gitea API endpoint and authorization token:
   ```
