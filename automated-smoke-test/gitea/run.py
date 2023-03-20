@@ -22,14 +22,16 @@ user_url = f"{api_base_url}/user"
 user_response = requests.get(user_url, headers=headers)
 user_response.raise_for_status()
 username = user_response.json()["login"]
+if user_response.status_code == 200:
+    print(f"Successfully logged in as '{username}'")
+else:
+    print("There was an error logging in")
 
 # -- Delete repository if it already exists
 repo_url = f"{api_base_url}/repos/{username}/{repo_name}"
 repo_response = requests.delete(repo_url, headers=headers, allow_redirects=True)
 if repo_response.status_code == 204:
     print(f"Repository '{repo_name}' deleted successfully.")
-else:
-    print(f"Repository '{repo_name}' does not exist.")
 
 # -- Create repository
 repo_data = {
@@ -42,7 +44,8 @@ repo_data = {
 repo_url = f"{api_base_url}/user/repos"
 repo_response = requests.post(repo_url, headers=headers, json=repo_data)
 repo_response.raise_for_status()
-print(f"Repository '{repo_name}' created successfully.")
+if repo_response.status_code == 201:
+    print(f"Repository '{repo_name}' created successfully.")
 
 # -- Create a new branch with random name
 branch_name = f"branch-{random.randint(1, 1000)}"
@@ -53,7 +56,8 @@ branch_data = {
 branch_url = f"{api_base_url}/repos/{username}/{repo_name}/branches"
 branch_response = requests.post(branch_url, headers=headers, json=branch_data)
 branch_response.raise_for_status()
-print(f"New branch '{branch_name}' created successfully.")
+if branch_response.status_code == 201:
+    print(f"New branch '{branch_name}' created successfully.")
 
 # -- Create new markdown file
 file_name = f"file-{random.randint(1, 1000)}.md"
