@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  github-release-notifier:
+    image: thenaim/github-release-notifier:latest
+    environment:
+      - DISCORD_WEBHOOK_URL=YOUR_DISCORD_WEBHOOK_URL
+      - GITHUB_TOKEN=YOUR_GITHUB_PERSONAL_ACCESS_TOKEN
+      - CHECK_INTERVAL=1800
+      - REPOSITORIES=argoproj,argo-cd
+        go-gitea,gitea
+        OWNER3,REPO3

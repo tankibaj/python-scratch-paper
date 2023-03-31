@@ -1,0 +1,41 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+
+image:
+  repository: thenaim/github-release-notifier
+  pullPolicy: IfNotPresent
+  tag: latest
+
+config:
+  discordWebhookUrl: YOUR_DISCORD_WEBHOOK_URL
+  checkInterval: "7200" # 2 hours by default
+  repositories:
+    - owner: owner1
+      name: repo1
+    - owner: owner2
+      name: repo2
+    - owner: owner3
+      name: repo3
+
+secrets:
+  githubToken: ""
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+securityContext: {}
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
